@@ -3,10 +3,10 @@
 ![Build & Test](https://github.com/android-actions/setup-android/workflows/Build%20&%20Test/badge.svg)
 
 This action sets up the Android SDK tools by:
- - Downloading the SDK commandline tools, if the current version (11.0) is not found in either `$ANDROID_SDK_ROOT` or `$HOME/.android/sdk`.
+ - Downloading the SDK commandline tools, if the current version (16.0) is not found in either `$ANDROID_SDK_ROOT` or `$HOME/.android/sdk`.
  - Accepting the SDK licenses.
  - Installing `tools` and `platform-tools`.
- - Adding `platform-tools` (contains adb) and `cmdline-tools/11.0/bin` (contains sdkmanager) to `$PATH`.
+ - Adding `platform-tools` (contains adb) and `cmdline-tools/16.0/bin` (contains sdkmanager) to `$PATH`.
  - Setting up problem [matchers](/matchers.json).
 
 On Windows 2016 runners, this action also checks if `$ANDROID_SDK_ROOT` path contains spaces.
@@ -26,13 +26,13 @@ steps:
 - uses: actions/checkout@v4
 
 - name: Set up JDK 17
-  uses: actions/setup-java@v3
+  uses: actions/setup-java@v4
   with:
     java-version: '17'
     distribution: 'temurin'
 
 - name: Setup Android SDK
-  uses: android-actions/setup-android@v3
+  uses: android-actions/setup-android@v4
 
 - name: Build SampleApplication
   run: ./gradlew --no-daemon build
@@ -47,7 +47,7 @@ Additional packages can be installed at a later time by calling sdkmanager manua
 
 ```yaml
 - name: Setup Android SDK
-  uses: android-actions/setup-android@v3
+  uses: android-actions/setup-android@v4
   with:
     packages: ''
 
@@ -61,24 +61,28 @@ Additional packages can be installed at a later time by calling sdkmanager manua
 Command line tools are versioned using two variables - short and long.
 Long one is the build number, used in the zip URL, short one is the human friendly version name.
 
-By default, setup-android installs version 10406996 (short version 11.0).
+By default, setup-android installs version 14742923 (short version 20.0).
 
 To install a different version, call setup-android with desired long version as the input parameter `cmdline-tools-version`:
 ```yaml
 - name: Setup Android SDK
-  uses: android-actions/setup-android@v3
+  uses: android-actions/setup-android@v4
   with:
     cmdline-tools-version: 8512546
 ```
 
 #### Version table
 | Short version | Long version |
-| --- | --- |
-| 11.0 | 10406996 |
-| 10.0 | 9862592 |
-| 9.0 | 9477386 |
-| 8.0 | 9123335 |
-| 7.0 | 8512546 |
+|---------------| --- |
+| 20.0          | 14742923 |
+| 16.0          | 12266719 |
+| 13.0          | 11479570 |
+| 12.0          | 11076708 |
+| 11.0          | 10406996 |
+| 10.0          | 9862592 |
+| 9.0           | 9477386 |
+| 8.0           | 9123335 |
+| 7.0           | 8512546 |
 
 Current cmdline tools version can be found at https://developer.android.com/studio#command-line-tools-only
 

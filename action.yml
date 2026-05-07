@@ -6,7 +6,7 @@ inputs:
   cmdline-tools-version:
     description: 'cmdline-tools-version. See https://developer.android.com/studio#command-line-tools-only'
     required: false
-    default: '10406996'
+    default: '14742923'
 
   accept-android-sdk-licenses:
     description: 'Android SDK is usable only after the license agreement. Should setup-android agree to the licences, provided by "sdkmanager --licenses"'
@@ -24,7 +24,7 @@ inputs:
     default: 'tools platform-tools'
 
 runs:
-  using: node20
+  using: node24
   main: 'dist/index.js'
 
 branding:
